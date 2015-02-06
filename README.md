@@ -4,11 +4,12 @@ A full copy of GlotPress that's integrated with your WordPress install, includin
 
 Contributors: GregRoss
 Plugin URI: http://toolstack.com/glot-o-matic
+GitHub Plugin URI: https://github.com/toolstack/Glot-O-Matic
 Author URI: http://toolstack.com
 Tags: glotpress admin
 Requires at least: 3.9
 Tested up to: 4.1
-Stable tag: 0.5
+Stable tag: 0.6
 License: GPLv2
 
 A full copy of GlotPress that's integrated with your WordPress install, including single sign on.
@@ -34,9 +35,12 @@ This code is released under the GPL v2, see license.txt for details.
 
 ## Installation ##
 
-1. Extract the archive file into your plugins directory in the glot-o-matic folder.
-2. Activate the plugin in the Plugin options.
-3. Go to the GlotPress->Settings menu and select your options.
+1.Download the latest release from GitHub (or trunk if your feeling especially adventurous)
+2.Extract the archive file into your plugins directory in the glot-o-matic folder, or use WordPress upload plugin feature.
+3.Activate the plugin in the Plugin options.
+4.Go to the GlotPress->Settings menu and select your options.
+
+You may also want to take a look at (GitHub Updater)[https://github.com/afragen/github-updater] if you want to stay up to date automatically.
 
 ## Settings ##
 
@@ -150,9 +154,12 @@ Also note that external links the "Proudly powered by GlotPress" in the footer, 
 7. Admin management.
 
 ## Changelog ##
+# 0.6 #
+* Updates to support GitHub for the repository instead of WordPress.org.
+
 # 0.5 #
 * Initial release.
 
 ## Upgrade Notice ##
-# 0.5 #
+# 0.6 #
 * None.

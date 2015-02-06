@@ -2,15 +2,16 @@
 /*
 Plugin Name: Glot-O-Matic
 Plugin URI: http://glot-o-matic.com
+GitHub Plugin URI: https://github.com/toolstack/Glot-O-Matic
 Description: A full copy of GlotPress that's integrated with your WordPress install, including single sign on.
-Version: 0.5
+Version: 0.6
 Author: Greg Ross
 Author URI: http://toolstack.com
 License: GPL2
 */
 
 	// These defines are used later for various reasons.
-	define('GOM_VERSION', '0.5');
+	define('GOM_VERSION', '0.6');
 	define('GOM_REQUIRED_PHP_VERSION', '5.3' );
 
 	include_once( 'ToolStack-Utilities.class.php' );
@@ -44,7 +45,7 @@ License: GPL2
 
 	// Add a settings link to the plugin list.
 	function gom_settings_links( $links, $file ) {
-		array_unshift( $links, '<a href="' . admin_url( 'admin.php?page=gom-settings' ) . '">' . __( 'Settings', 'wp_statistics' ) . '</a>' );
+		array_unshift( $links, '<a href="' . admin_url( 'admin.php?page=gom_settings' ) . '">' . __( 'Settings', 'wp_statistics' ) . '</a>' );
 		
 		return $links;
 	}
@@ -53,12 +54,9 @@ License: GPL2
 	// Add a WordPress plugin page and rating links to the meta information to the plugin list.
 	function gom_add_meta_links($links, $file) {
 		if( $file == plugin_basename(__FILE__) ) {
-			$plugin_url = 'http://wordpress.org/plugins/glot-o-matic/';
+			$plugin_url = 'https://github.com/toolstack/Glot-O-Matic';
 			
-			$links[] = '<a href="'. $plugin_url .'" target="_blank" title="'. __('Click here to visit the plugin on WordPress.org', 'wp_statistics') .'">'. __('Visit WordPress.org page', 'wp_statistics') .'</a>';
-			
-			$rate_url = 'http://wordpress.org/support/view/plugin-reviews/glot-o-matic?rate=5#postform';
-			$links[] = '<a href="'. $rate_url .'" target="_blank" title="'. __('Click here to rate and review this plugin on WordPress.org', 'wp_statistics') .'">'. __('Rate this plugin', 'wp_statistics') .'</a>';
+			$links[] = '<a href="'. $plugin_url .'" target="_blank" title="'. __('Click here to visit the plugin on GitHub', 'wp_statistics') .'">'. __('Visit GitHub repository', 'wp_statistics') .'</a>';
 		}
 		
 		return $links;
@@ -766,9 +764,7 @@ License: GPL2
 		<p><?php _e('by');?> <a href="https://profiles.wordpress.org/gregross" target=_blank>Greg Ross</a></p>
 		<p>&nbsp;</p>
 		<p><?php printf(__('Licenced under the %sGPL Version 2%s'), '<a href="http://www.gnu.org/licenses/gpl-2.0.html" target=_blank>', '</a>');?></p>
-		<p><?php printf(__('To find out more, please visit the %sWordPress Plugin Directory page%s or %sglot-o-matic.com%s'), '<a href="http://wordpress.org/plugins/glot-o-matic" target=_blank>', '</a>', '<a href="http://glot-o-matic.com" target=_blank>', '</a>');?></p>
-		<p>&nbsp;</p>
-		<p><?php printf(__("Don't forget to %srate and review%s it too!"), '<a href="http://wordpress.org/support/view/plugin-reviews/glot-o-matic" target=_blank>', '</a>');?></p>
+		<p><?php printf(__('To find out more, please visit the %sGitHub repository page%s or %sglot-o-matic.com%s'), '<a href="https://github.com/toolstack/Glot-O-Matic" target=_blank>', '</a>', '<a href="http://glot-o-matic.com" target=_blank>', '</a>');?></p>
 	</fieldset>
 </div>
 	<?php
