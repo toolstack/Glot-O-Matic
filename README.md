@@ -1,16 +1,16 @@
 # Glot-O-Matic
 
-A full copy of GlotPress that's integrated with your WordPress install, including single sign on, all in a single plugin.
+A full copy of GlotPress that's integrated with your WordPress install, including single sign on, all in a single plugin.  
 
-Contributors: GregRoss
-Plugin URI: http://toolstack.com/glot-o-matic
-GitHub Plugin URI: https://github.com/toolstack/Glot-O-Matic
-Author URI: http://toolstack.com
-Tags: glotpress admin
-Requires at least: 3.9
-Tested up to: 4.1
-Stable tag: 0.6
-License: GPLv2
+Contributors: GregRoss  
+Plugin URI: http://toolstack.com/glot-o-matic  
+GitHub Plugin URI: https://github.com/toolstack/Glot-O-Matic  
+Author URI: http://toolstack.com  
+Tags: glotpress admin  
+Requires at least: 3.9  
+Tested up to: 4.1  
+Stable tag: 0.6  
+License: GPLv2  
 
 A full copy of GlotPress that's integrated with your WordPress install, including single sign on.
 
@@ -35,12 +35,12 @@ This code is released under the GPL v2, see license.txt for details.
 
 ## Installation ##
 
-1.Download the latest release from GitHub (or trunk if your feeling especially adventurous)
-2.Extract the archive file into your plugins directory in the glot-o-matic folder, or use WordPress upload plugin feature.
-3.Activate the plugin in the Plugin options.
-4.Go to the GlotPress->Settings menu and select your options.
+1. Download the latest release from GitHub (or trunk if your feeling especially adventurous)
+2. Extract the archive file into your plugins directory in the glot-o-matic folder, or use WordPress upload plugin feature.
+3. Activate the plugin in the Plugin options.
+4. Go to the GlotPress->Settings menu and select your options.
 
-You may also want to take a look at (GitHub Updater)[https://github.com/afragen/github-updater] if you want to stay up to date automatically.
+You may also want to take a look at [GitHub Updater](https://github.com/afragen/github-updater) if you want to stay up to date automatically.
 
 ## Settings ##
 
@@ -126,9 +126,9 @@ Yes! Glot-O-Matic is a full one-click install of GlotPress in your WordPress sys
 
 # I already have GlotPress installed, can I still use Glot-O-Matic? #
 
-No, but you might be interested in (GP Integration)[http://wordpress.org/plugins/gp-integration] which has many of the same features.
+No, but you might be interested in [GP Integration](http://wordpress.org/plugins/gp-integration) which has many of the same features.
 
-You also might want to check out the plugins and other features available in the fork of GlotPress I maintain at (GitHub)[http://github.com/toolstack/GlotPress].
+You also might want to check out the plugins and other features available in the fork of GlotPress I maintain at [GitHub](http://github.com/toolstack/GlotPress).
 
 # What is the shortcode name? #
 
