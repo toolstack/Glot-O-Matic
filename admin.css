@@ -1,0 +1,8 @@
+#adminmenu #toplevel_page_glot-o-matic-glot-o-matic .wp-menu-image:before {
+	content: "\f130";
+}
+
+#wp-admin-bar-glot-o-matic-menu .ab-icon:before{
+	font-family: "dashicons" !important;
+	content: "\f130" !important;
+}
