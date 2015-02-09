@@ -234,6 +234,37 @@ function gp_locales_dropdown( $name_and_id, $selected_slug = null, $attrs = arra
 	return gp_select( $name_and_id, array_merge( array( '' => __('&mdash; Locale &mdash;') ), array_combine( $values, $labels ) ), $selected_slug, $attrs );
 }
 
+function gp_translation_set_slugs_dropdown( $name_and_id, $project, $selected_slug = null, $attrs = array() ) {
+	// Get the translations sets from the project ID.
+	$translation_sets = GP::$translation_set->by_project_id( $project->id );
+
+	$slugs = array();
+	
+	$slugs['default'] = 'Default';
+	
+	// Loop through all the sets.
+	foreach( $translation_sets as $set ) {
+		$slugs[$set->slug] = $set->slug;
+	}
+
+	return gp_select( $name_and_id, $slugs, $selected_slug, $attrs );
+}
+
+function gp_users_dropdown( $name_and_id, $selected_user = null, $attrs = array() ) {
+	GLOBAL $gpdb;
+	
+	$sql = "SELECT user_login FROM `{$gpdb->users}` ORDER BY `user_login` ASC;";
+	$db_users = $gpdb->get_results( $sql );	
+
+	$users = array();
+	
+	foreach( $db_users as $user ) {
+		$users[$user->user_login] = $user->user_login;
+	}
+	
+	return gp_select( $name_and_id, $users, $selected_user, $attrs );
+}
+
 function gp_projects_dropdown( $name_and_id, $selected_project_id = null, $attrs = array() ) {
 	$projects = GP::$project->all();
 	// TODO: mark which nodes are editable by the current user

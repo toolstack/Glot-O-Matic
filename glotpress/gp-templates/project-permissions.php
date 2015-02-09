@@ -52,11 +52,11 @@ gp_tmpl_header();
 	<h3 id="add"><?php _e('Add a validator for this project'); ?></h3>
 	<dl>
 		<dt><label for="user_login"><?php _e('Username:'); ?></label></dt>
-		<dd><input type="text" name="user_login" value="" id="user_login" /></dd>
+		<dd><?php echo gp_users_dropdown( 'user_login' );?></dd>
 		<dt><label for="locale"><?php _e('Locale:'); ?></label></dt>
 		<dd><?php echo gp_locales_dropdown( 'locale' ); ?></dd>
 		<dt><label for="set-slug"><?php _e('Translation set slug:'); ?></label></dt>
-		<dd><input type="text" name="set-slug" value="default" id="set-slug" /></dd>
+		<dd><?php echo gp_translation_set_slugs_dropdown('set-slug', $project);?></dd>
 
 		<dt>
 			<input type="submit" name="submit" value="<?php echo esc_attr(__('Add')); ?>" id="submit" />
