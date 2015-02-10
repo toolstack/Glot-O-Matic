@@ -1,3 +1,6 @@
+# 0.9 #
+* Test release.
+
 # 0.8 #
 * Fixed incorrect 0.7 release values.
 
