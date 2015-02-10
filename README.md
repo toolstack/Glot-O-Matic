@@ -152,14 +152,3 @@ Also note that external links the "Proudly powered by GlotPress" in the footer, 
 5. Project management.
 6. User management.
 7. Admin management.
-
-## Changelog ##
-# 0.6 #
-* Updates to support GitHub for the repository instead of WordPress.org.
-
-# 0.5 #
-* Initial release.
-
-## Upgrade Notice ##
-# 0.6 #
-* None.
