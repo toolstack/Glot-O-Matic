@@ -17,12 +17,73 @@ class GP_Google_Translate extends GP_Plugin {
 
 		parent::__construct();
 
+		if( GP::$user->current()->can( 'write', 'project' ) ) {
+			$this->add_action( 'gp_project_actions', array( 'args' => 2 ) );
+		}
+		
 		$this->add_action( 'pre_tmpl_load', array( 'args' => 2 ) );
 		$this->add_filter( 'gp_entry_actions' );
 		$this->add_action( 'gp_translation_set_bulk_action' );
 		$this->add_action( 'gp_translation_set_bulk_action_post', array( 'args' => 4 ) );
+
+		// We can't use the filter in the defaults route code because plugins don't load until after
+		// it has already run, so instead add the routes directly to the global GP_Router object.
+		GP::$router->add( "/bulk-translate/(.+?)", array( $this, 'bulk_translate' ), 'get' );
+		GP::$router->add( "/bulk-translate/(.+?)", array( $this, 'bulk_translate' ), 'post' );
 	}
 
+	public function gp_project_actions( $actions, $project ) {
+		$actions[] .= gp_link_get( gp_url( 'bulk-translate/' . $project->slug), __('Bulk Google Translate') );
+		
+		return $actions;
+	}
+	
+	public function before_request() {
+	}
+	
+	public function bulk_translate( $project_path ) {
+		$project_path = urldecode( $project_path );
+		$url = gp_url_project( $project_path );
+
+		// If we don't have rights, just redirect back to the project.
+		if( !GP::$user->current()->can( 'write', 'project' ) ) {
+			gp_redirect( $url );
+		}
+
+		// Create a project class to use to get the project object.
+		$project_class = new GP_Project;
+		
+		// Get the project object from the project path that was passed in.
+		$project_obj = $project_class->by_path( $project_path );
+		
+		// Get the translations sets from the project ID.
+		$translation_sets = GP::$translation_set->by_project_id( $project_obj->id );
+
+		// Loop through all the sets.
+		foreach( $translation_sets as $set ) {
+			//Array ( [action] => gtranslate [priority] => 0 [redirect_to] => http://localhost/wp40/gp/projects/sample/bg/my [row-ids] => Array ( [0] => 1 [1] => 2 ) ) 
+			$bulk = array( 'action' => 'gtranslate', 'priority' => 0, 'row-ids' => array() );
+			
+			$translation = new GP_Translation;
+			
+			$strings = $translation->for_translation( $project_obj, $set, null, array( 'status' => 'untranslated') );
+
+			foreach( $strings as $string ) {
+				$bulk['row-ids'][] .= $string->row_id;
+			}
+			
+			$locale = GP_Locales::by_slug( $set->locale );
+			
+			$this->gp_translation_set_bulk_action_post( $project_obj, $locale, $set, $bulk );
+		}
+
+		$url = gp_url_project( $project_path );
+		gp_redirect( $url );
+	}
+
+	public function after_request() {
+	}
+	
 	public function pre_tmpl_load( $template, $args ) {
 		if (GP::$user->logged_in()) {
 			$user_obj = GP::$user->current();
