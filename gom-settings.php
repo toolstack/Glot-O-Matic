@@ -137,10 +137,10 @@
 						'GP_AUTH_COOKIE' 								=> 'wordpress_' . $hash,
 						'GP_SECURE_AUTH_COOKIE' 						=> 'wordpress_sec_auth_' . $hash,
 						'GP_LOGGED_IN_COOKIE' 							=> 'wordpress_logged_in_' . $hash,
-						'GP_AUTH_SALT' 									=> AUTH_SALT,
-						'GP_SECURE_AUTH_SALT' 							=> SECURE_AUTH_SALT,
-						'GP_LOGGED_IN_SALT' 							=> LOGGED_IN_SALT,
-						'GP_NONCE_SALT' 								=> NONCE_SALT,						
+						'GP_AUTH_SALT' 									=> defined( 'AUTH_SALT' ) ? AUTH_SALT : str_replace( AUTH_KEY, '', wp_salt( 'auth' ) ),
+						'GP_SECURE_AUTH_SALT' 							=> defined( 'SECURE_AUTH_SALT' ) ? SECURE_AUTH_SALT : str_replace( SECURE_AUTH_KEY, '', wp_salt( 'secure_auth' ) ),
+						'GP_LOGGED_IN_SALT' 							=> defined( 'LOGGED_IN_SALT' ) ? LOGGED_IN_SALT : str_replace( LOGGED_IN_KEY, '', wp_salt( 'logged_in' ) ),
+						'GP_NONCE_SALT' 								=> defined( 'NONCE_SALT' ) ? NONCE_SALT : str_replace( NONCE_KEY, '', wp_salt( 'nonce' ) ),						
 						'GP_BULK_DOWNLOAD_TRANSLATIONS_TEMP_DIR' 		=> get_temp_dir(),
 					);
 	}
