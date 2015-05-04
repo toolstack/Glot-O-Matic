@@ -24,7 +24,7 @@ function gp_upgrade() {
 }
 
 /**
- * Sets the mod_rewrite rules
+ * Sets the rewrite rules
  *
  * @return bool Returns true on success and false on failure
  */
