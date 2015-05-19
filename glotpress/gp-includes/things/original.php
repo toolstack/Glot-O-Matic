@@ -56,9 +56,9 @@ class GP_Original extends GP_Thing {
 
 		$where = array();
 		// now each condition has to contain a %s not to break the sequence
-		$where[] = is_null( $entry->context ) ? '(context IS NULL OR %s IS NULL)' : 'BINARY context = %s';
-		$where[] = 'BINARY singular = %s';
-		$where[] = is_null( $entry->plural ) ? '(plural IS NULL OR %s IS NULL)' : 'BINARY plural = %s';
+		$where[] = is_null( $entry->context ) ? '(context IS NULL OR %s IS NULL)' : 'context = BINARY %s';
+		$where[] = 'singular = BINARY %s';
+		$where[] = is_null( $entry->plural ) ? '(plural IS NULL OR %s IS NULL)' : 'plural = BINARY %s';
 		$where[] = 'project_id = %d';
 
 		if ( ! is_null( $status ) ) {
@@ -109,7 +109,7 @@ class GP_Original extends GP_Thing {
 			// Original exists, let's update it.
 			if ( isset( $originals_by_key[ $entry->key() ] ) ) {
 				$original = $originals_by_key[ $entry->key() ];
-				if ( $original->status == '-obsolete' || GP::$original->should_be_updated_with( $data, $original ) ) {
+				if ( $original->status == '-obsolete' || GP::$original->is_different_from( $data, $original ) ) {
 					$this->update( $data, array( 'id' => $original->id ) );
 				}
 
@@ -186,19 +186,6 @@ class GP_Original extends GP_Thing {
 		foreach ( $translations as $translation ) {
 			$translation->set_status( 'fuzzy' );
 		}
-	}
-
-	function should_be_updated_with( $data, $original = null ) {
-		if ( ! $original ) {
-			$original = $this;
-		}
-
-		foreach ( $data as $field => $value ) {
-			if ( $original->$field != $value ) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	function is_different_from( $data, $original = null ) {
