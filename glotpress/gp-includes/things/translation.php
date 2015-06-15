@@ -113,6 +113,7 @@ class GP_Translation extends GP_Thing {
 		}
 		if ( 'yes' == gp_array_get( $filters, 'warnings' ) ) {
 			$where[] = 't.warnings IS NOT NULL';
+			$where[] = 't.warnings != ""';
 		} elseif ( 'no' == gp_array_get( $filters, 'warnings' ) ) {
 			$where[] = 't.warnings IS NULL';
 		}
@@ -143,10 +144,14 @@ class GP_Translation extends GP_Thing {
 			$join_type = 'LEFT';
 			$join_where[] = 't.status != "rejected"';
 			$join_where[] = 't.status != "old"';
-			$statuses = array_filter( $statuses, lambda( '$x', '$x != "untranslated"' ) );
+			$statuses = array_filter( $statuses, function( $x ) { return $x != 'untranslated'; } );
 		}
 
-		$statuses = array_filter( $statuses, lambda( '$s', 'in_array($s, $statuses)', array( 'statuses' => $this->get_static( 'statuses' ) ) ) );
+		$all_statuses = $this->get_static( 'statuses' );
+		$statuses = array_filter( $statuses, function( $s ) use ( $all_statuses ) {
+			return in_array( $s, $all_statuses );
+		} );
+
 		if ( $statuses ) {
 			$statuses_where = array();
 			foreach( $statuses as $single_status ) {
