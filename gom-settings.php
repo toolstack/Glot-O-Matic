@@ -44,6 +44,12 @@
 		$ret['Footer']											= array( 'type' => 'title' );
 		$ret['GP_REMOVE_POWERED_BY'] 							= array( 'type' => 'bool', 'desc' => 'Remove "...Powered By..." from the footer' );
 
+		$ret['SSL']												= array( 'type' => 'title' );
+		$ret['GP_SSL'] 											= array( 'type' => 'bool', 'desc' => 'Enable SSL in GlotPress' );
+		$ret['GP_FORCE_SSL']									= array( 'type' => 'bool', 'desc' => 'Force SSL in GlotPress' );
+		$ret['HTTP_X_FORWARDED_PROTO Desc']						= array( 'type' => 'desc', 'desc' => 'Some hosting providers place the SSL certificate on a proxy server in front of the web server, this will use the HTTP_X_FORWARDED_PROTO header to detect when an SSL connection is being made from the client.');
+		$ret['HTTP_X_FORWARDED_PROTO']							= array( 'type' => 'bool', 'desc' => 'Support HTTP_X_FORWARDED_PROTO' );
+		
 		$ret['Advanced']										= array( 'type' => 'title' );
 		$ret['Path Desc']										= array( 'type' => 'desc', 'desc' => 'This is the fully qualified path to glotpress, you can change it to specify a starting location.');
 		$ret['glotpress_path']									= array( 'type' => 'text', 'desc' => 'Use this url when opening GlotPress', 'size' => 40, 'height' => 1 );
@@ -110,6 +116,9 @@
 		$ret['GP_BULK_DOWNLOAD_TRANSLATIONS_FORMAT_RESX'] 		= 'define-bool';
 		$ret['GP_BULK_DOWNLOAD_TRANSLATIONS_FORMAT_STRINGS'] 	= 'define-bool';
 		$ret['GP_BULK_DOWNLOAD_TRANSLATIONS_TEMP_DIR'] 			= 'constant';
+		$ret['GP_SSL']											= 'define-bool';
+		$ret['GP_FORCE_SSL']									= 'define-bool';
+		$ret['HTTP_X_FORWARDED_PROTO']							= 'code-bool';
 		$ret['advanced_gpconfig']								= 'text';
 		
 		return $ret;
@@ -142,6 +151,7 @@
 						'GP_LOGGED_IN_SALT' 							=> defined( 'LOGGED_IN_SALT' ) ? LOGGED_IN_SALT : str_replace( LOGGED_IN_KEY, '', wp_salt( 'logged_in' ) ),
 						'GP_NONCE_SALT' 								=> defined( 'NONCE_SALT' ) ? NONCE_SALT : str_replace( NONCE_KEY, '', wp_salt( 'nonce' ) ),						
 						'GP_BULK_DOWNLOAD_TRANSLATIONS_TEMP_DIR' 		=> get_temp_dir(),
+						'HTTP_X_FORWARDED_PROTO'						=> "if (array_key_exists( 'HTTP_X_FORWARDED_PROTO', \$_SERVER ) && \$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {\n	\$_SERVER['HTTPS']='on';\n	\$_SERVER['SERVER_PORT']='443';\n}",
 					);
 	}
 	

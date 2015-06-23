@@ -14,11 +14,11 @@ License: GPL2
 	define('GOM_VERSION', '0.8');
 	define('GOM_REQUIRED_PHP_VERSION', '5.3' );
 
-	include_once( 'ToolStack-Utilities.class.php' );
+	include_once( 'ToolStack-WP-Utilities.class.php' );
 	include_once( 'gom-settings.php' );
 	
 	// Create out global utilities object.  We might be tempted to load the user options now, but that's not possible as WordPress hasn't processed the login this early yet.
-	$gom_utils = new ToolStack_Utilities( 'glot-o-matic' );
+	$gom_utils = new ToolStack_WP_Utilities_V2_3( 'glot-o-matic' );
 
 	function gom_php_after_plugin_row() {
 		echo '<tr><th scope="row" class="check-column"></th><td class="plugin-title" colspan="10"><span style="padding: 3px; color: white; background-color: red; font-weight: bold">&nbsp;&nbsp;' . __('ERROR: Glot-O-Matic has detected an unsupported version of PHP, Glot-O-Matic will not function without PHP Version ') . GOM_REQUIRED_PHP_VERSION . __(' or higher!') . '  ' . __('Your current PHP version is') . ' ' . phpversion() . '.&nbsp;&nbsp;</span></td></tr>';
@@ -705,6 +705,9 @@ License: GPL2
 					$setting = esc_html( $_POST[$key] );
 					$gom_utils->update_option($key, $setting );
 				}
+				else if( $option['type'] == 'bool' ) {
+					$gom_utils->update_option($key, false);
+				}
 			}
 			
 		gom_write_gp_config_file();
@@ -809,6 +812,12 @@ License: GPL2
 				case 'constant':
 					fwrite( $fh, "define('$setting', '" . $constants[$setting] . "');\n" );
 				
+					break;
+				case 'code-bool':
+					if( $gom_utils->get_option( $setting ) != '' ) {
+						fwrite( $fh, $constants[$setting] . "\n" );
+					}
+					
 					break;
 				default:			// a general text line(s).
 					fwrite( $fh, $gom_utils->get_option( $setting ) );
