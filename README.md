@@ -9,7 +9,7 @@ Author URI: http://toolstack.com
 Tags: glotpress admin  
 Requires at least: 3.9  
 Tested up to: 4.1  
-Stable tag: 0.9
+Stable tag: 1.0
 License: GPLv2  
 
 A full copy of GlotPress that's integrated with your WordPress install, including single sign on.
