@@ -37,6 +37,7 @@
 		$ret['GP_GOOGLE_TRANSLATE']		 						= array( 'type' => 'bool', 'desc' => 'Enable per user API Keys' );
 		
 		foreach( $admin_users as $user ) {
+			if( !is_object( $users_array_by_id[$user->user_id] ) ) { continue; }
 			$name = strtoupper( $users_array_by_id[$user->user_id]->user_login );
 			$ret['GP_GOOGLE_TRANSLATE_KEY_' . $name]		 	= array( 'type' => 'text', 'desc' => 'Google API key for ' . $users_array_by_id[$user->user_id]->user_login, 'size' => 20, 'height' => 1 );
 		}
