@@ -1,6 +1,14 @@
 This is a fork of GlotPress, focusing on integration with a WordPress install.
 
-There are six new plugins included in this version:
+Glot-O-Matic Core also includes several fixes to GlotPress:
+
+	- BackPress is included in the distro, so a single download will get you everything you need to install.
+	- Custom BackPress patch to resolve error when the installation routine creates the database tables.
+	- Support for IIS installs.
+	- Additional filters/actions to support the new plugins.
+	- A transparent logo file so you can customize your install better.
+
+There are seven new plugins included in this version:
 
 	- remove-projects-from-breadcrums
 	- use-slug-for-downloads
@@ -8,8 +16,9 @@ There are six new plugins included in this version:
 	- new-window-for-external-links
 	- remove-powered-by
 	- bulk-download-translations
+	- force-ssl
 	
-as well as an update to the google-translate plugin.
+as well as an update to the google-translate plugin.  See the individual readme.txt files included with each plugin for more details on them.
 
 New Plugin: remove-projects-from-breadcrums
 -------------------------------------------
@@ -47,6 +56,12 @@ This plugin will download all the translation sets (in PO format) of a project i
 
 This plugin will work with the official GlotPress distribution.
 	
+New Plugin: force-ssl
+--------------------------------------
+This plugin will redirect any non-SSL requests to https.
+
+This plugin will work with the official GlotPress distribution.
+
 Updated Plugin: google-translate
 --------------------------------
 The Google translate plugin has been updated, you can now assign a Google API key to individual users and a readme has been added with details on the configuraiton of the plugin.
