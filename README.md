@@ -108,6 +108,19 @@ Footer
 	Remove "...Powered By..." from the footer
 	
 		If you do not want to see the "Powered By" line in the footer you can enable this option to remove it.
+
+SSL
+	Enable SSL in GlotPress
+		
+		If you have SSL enabled for your WordPress installation and want GlotPress to use it, select this option.
+		
+	Force SSL in GlotPress
+	
+		If you want to force SSL for GlotPress, select this option.
+		
+	Support HTTP_X_FORWARDED_PROTO
+	
+		Some hosting providers place the SSL certificate on a proxy server in front of the web server, this will use the HTTP_X_FORWARDED_PROTO header to detect when an SSL connection is being made from the client.
 	
 Advanced
 	Use this url when opening GlotPress
