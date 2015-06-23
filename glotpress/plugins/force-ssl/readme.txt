@@ -10,7 +10,7 @@ hosting provider places the SSL certificates on a proxy server and then connects
 server via http only AND they support the HTTP_X_FORWARDED_PROTO header then add the following
 lines.  If you are connecting on a non-standard port, change it below.
 
-	if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+	if (array_key_exists( 'HTTP_X_FORWARDED_PROTO', $_SERVER ) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
 		$_SERVER['HTTPS']='on';
 		$_SERVER['SERVER_PORT']='443';
 	}

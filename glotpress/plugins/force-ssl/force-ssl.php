@@ -10,7 +10,7 @@ class GP_Force_SSL extends GP_Plugin {
 
 		parent::__construct();
 
-		$this->add_action( 'plugins_loaded' );
+		$this->add_action( 'plugins_loaded', array( 'priority' => 1 ) );
 	}
 
 	public function plugins_loaded() {

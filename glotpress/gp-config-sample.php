@@ -171,7 +171,7 @@ $gp_table_prefix = 'gp_';
 //
 // If your hosting provider puts the server behind a reverse proxy with the SSL certificates on them, 
 // check for the extended protocol type and set the variables as required.
-//if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+//if (array_key_exists( 'HTTP_X_FORWARDED_PROTO', $_SERVER ) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
 //		$_SERVER['HTTPS']='on';
 //		$_SERVER['SERVER_PORT']='443';
 //}
