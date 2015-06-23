@@ -153,3 +153,26 @@ $gp_table_prefix = 'gp_';
 //define( 'GP_BULK_DOWNLOAD_TRANSLATIONS_FORMAT_RESX', true );
 //define( 'GP_BULK_DOWNLOAD_TRANSLATIONS_FORMAT_STRINGS', true );
 //define( 'GP_BULK_DOWNLOAD_TRANSLATIONS_TEMP_DIR', 'c:/temp' );
+
+/**
+ * Force SSL Plugin
+ * 
+ * Enable the Force SSL plugin by uncommenting the first two defines below.  You may also need to uncomment
+ * the additional lines if your hosting provider places the SSL certificates on a proxy server in front of
+ * the web server.  If you enable SSL and get an infinite redirect loop, try uncommenting these lines.
+ * 
+ * Note: If uncomment more than the first define and want the PO files in the export you must
+ *       uncomment the second define.
+ * 
+ * For more options, see the readme in plugins/force-ssl/readme.txt
+ */
+//define( 'GP_SSL', true );
+//define( 'GP_FORCE_SSL', true );
+//
+// If your hosting provider puts the server behind a reverse proxy with the SSL certificates on them, 
+// check for the extended protocol type and set the variables as required.
+//if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+//		$_SERVER['HTTPS']='on';
+//		$_SERVER['SERVER_PORT']='443';
+//}
+
