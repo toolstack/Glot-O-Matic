@@ -30,7 +30,7 @@ New Plugin: use-slug-for-downloads
 ----------------------------------
 This plugin allows you to use the slug as the default filename when exporting a translation set.  See the readme for more details in the plugin directory.
 	
-This plugin requires the version of GlotPress contained in this repository, the official GlotPress distribution will not work as there are several filters that are required but do not exist in it.
+This plugin will work with the official GlotPress distribution after July 19, 2015.
 
 New Plugin: wordpress-single-sign-on
 ------------------------------------

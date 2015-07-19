@@ -14,12 +14,13 @@ class GP_User_Slug_for_Downloads extends GP_Plugin {
 	
 		parent::__construct();
 
-		$this->add_action( 'export_filename', array( 'args' => 5 ) );
+		$this->add_action( 'export_translations_filename', array( 'args' => 5 ) );
 	}
 
-	public function export_filename( $filename, $project_path, $translation_set_slug, $export_locale, $format_extension ) {
-		if( $translation_set_slug != '' && $translation_set_slug != 'default' ) {
-			$filename = $translation_set_slug . '.' . $format_extension;
+	public function export_translations_filename( $filename, $format, $locale, $project, $translation_set ) {
+
+		if( $translation_set->slug != '' && $translation_set->slug != 'default' ) {
+			$filename = $translation_set->slug . '.' . $format->extension;
 		}
 		
 		return $filename;

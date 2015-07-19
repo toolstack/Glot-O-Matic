@@ -149,11 +149,17 @@ class WP_Auth_V2
 	function validate_auth_cookie( $cookie = null, $scheme = 'auth' )
 	{
 		if ( empty( $cookie ) ) {
-			foreach ( $this->cookies[$scheme] as $_scheme_cookie ) {
-				// Take the first cookie of type scheme that exists
-				if ( !empty( $_COOKIE[$_scheme_cookie['name']] ) ) {
-					$cookie = $_COOKIE[$_scheme_cookie['name']];
-					break;
+			foreach ( $this->cookies as $key => $_scheme_cookie ) {
+				// Take the first cookie of type scheme that exists, but keep going if it's malformed just in case there's a proper one in another cookie type.
+				if ( !empty( $_COOKIE[$_scheme_cookie[0]['name']] ) ) {
+					$cookie = $_COOKIE[$_scheme_cookie[0]['name']];
+					$scheme = $key;
+
+					// A valide cookie should have four components.  If this one does we can stop looking.
+					$cookie_elements = explode( '|', $cookie );
+					if ( count( $cookie_elements ) != 4 ) {
+						break;
+					}
 				}
 			}
 		}
