@@ -7,6 +7,7 @@ class GP_Google_Translate extends GP_Plugin {
 	public $notices = array();
 
 	private $key;
+	private $google_code = false;
 
 	public function __construct() {
 		$this->key = gp_const_get('GP_GOOGLE_TRANSLATE_KEY');
@@ -116,6 +117,8 @@ class GP_Google_Translate extends GP_Plugin {
 			'key'    => $this->key,
 			'locale' => $args['locale']->google_code
 		);
+		
+		$this->google_code = $args['locale']->google_code;
 
 		wp_enqueue_script( 'google-translate', $url . '/plugins/google-translate/google-translate.js', array( 'jquery', 'editor' ) );
 		wp_localize_script( 'google-translate', 'gp_google_translate', $options );
@@ -123,14 +126,18 @@ class GP_Google_Translate extends GP_Plugin {
 	}
 
 	public function gp_entry_actions( $actions ) {
-		$actions[] = '<a href="#" class="gtranslate" tabindex="-1">' . __('Translation from Google') . '</a>';
+		if ( $this->google_code ) {
+			$actions[] = '<a href="#" class="gtranslate" tabindex="-1">' . __('Translation from Google') . '</a>';
+		}
 
 		return $actions;
 	}
 
 
 	public function gp_translation_set_bulk_action() {
-		echo '<option value="gtranslate">' . __('Translate via Google') . '</option>';
+		if ( $this->google_code ) {
+			echo '<option value="gtranslate">' . __('Translate via Google') . '</option>';
+		}
 	}
 
 	public function gp_translation_set_bulk_action_post( $project, $locale, $translation_set, $bulk ) {

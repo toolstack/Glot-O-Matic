@@ -8,7 +8,7 @@ Glot-O-Matic Core also includes several fixes to GlotPress:
 	- Additional filters/actions to support the new plugins.
 	- A transparent logo file so you can customize your install better.
 
-There are seven new plugins included in this version:
+There are eight new plugins included in this version:
 
 	- remove-projects-from-breadcrums
 	- use-slug-for-downloads
@@ -17,6 +17,7 @@ There are seven new plugins included in this version:
 	- remove-powered-by
 	- bulk-download-translations
 	- force-ssl
+	- single-click-edit
 	
 as well as an update to the google-translate plugin.  See the individual readme.txt files included with each plugin for more details on them.
 
@@ -65,5 +66,11 @@ This plugin will work with the official GlotPress distribution.
 Updated Plugin: google-translate
 --------------------------------
 The Google translate plugin has been updated, you can now assign a Google API key to individual users and a readme has been added with details on the configuraiton of the plugin.
+	
+This plugin will work with the official GlotPress distribution.
+
+Updated Plugin: single-click-edit
+---------------------------------
+Single Click Edit is a plugin for GlotPress that will enable users to single click anywhere on the translation row to open the editor instead of having to click on "Details" or double click the row.
 	
 This plugin will work with the official GlotPress distribution.

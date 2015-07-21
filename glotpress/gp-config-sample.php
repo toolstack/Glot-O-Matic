@@ -176,3 +176,13 @@ $gp_table_prefix = 'gp_';
 //		$_SERVER['SERVER_PORT']='443';
 //}
 
+/**
+ * Single Click Edit Plugin
+ * 
+ * Single Click Edit is a plugin for GlotPress that will enable users to single click anywhere 
+ * on the translation row to open the editor instead of having to click on "Details" or double 
+ * click the row.
+ * 
+ * For more options, see the readme in plugins/single-click-edit/readme.txt
+ */
+//define( 'GP_SINGLE_CLICK_EDIT', true );
