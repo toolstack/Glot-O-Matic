@@ -51,6 +51,10 @@
 		$ret['HTTP_X_FORWARDED_PROTO Desc']						= array( 'type' => 'desc', 'desc' => 'Some hosting providers place the SSL certificate on a proxy server in front of the web server, this will use the HTTP_X_FORWARDED_PROTO header to detect when an SSL connection is being made from the client.');
 		$ret['HTTP_X_FORWARDED_PROTO']							= array( 'type' => 'bool', 'desc' => 'Support HTTP_X_FORWARDED_PROTO' );
 		
+		$ret['Single Click Edit']								= array( 'type' => 'title' );
+		$ret['GP_SINGLE_CLICK_EDIT Desc']						= array( 'type' => 'desc', 'desc' => 'This will enable users to single click anywhere on the translation row to open the editor instead of having to click on "Details" or double click the row.');
+		$ret['GP_SINGLE_CLICK_EDIT'] 							= array( 'type' => 'bool', 'desc' => 'Enable Single Click Edit' );
+		
 		$ret['Advanced']										= array( 'type' => 'title' );
 		$ret['Path Desc']										= array( 'type' => 'desc', 'desc' => 'This is the fully qualified path to glotpress, you can change it to specify a starting location.');
 		$ret['glotpress_path']									= array( 'type' => 'text', 'desc' => 'Use this url when opening GlotPress', 'size' => 40, 'height' => 1 );
@@ -121,6 +125,7 @@
 		$ret['GP_FORCE_SSL']									= 'define-bool';
 		$ret['HTTP_X_FORWARDED_PROTO']							= 'code-bool';
 		$ret['advanced_gpconfig']								= 'text';
+		$ret['GP_SINGLE_CLICK_EDIT']							= 'define-bool';
 		
 		return $ret;
 	}
