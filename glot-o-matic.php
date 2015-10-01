@@ -812,7 +812,7 @@ License: GPL2
 		}
 		
 	function gom_write_gp_config_file() {
-		GLOBAL $gom_utils, $wpdb;
+		GLOBAL $gom_utils, $wpdb, $is_iis7;
 		
 		$table_prefix = $wpdb->prefix;
 		
