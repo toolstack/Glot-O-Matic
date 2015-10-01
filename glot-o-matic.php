@@ -18,6 +18,7 @@ License: GPL2
 	include_once( 'gom-settings.php' );
 	
 	// Create out global utilities object.  We might be tempted to load the user options now, but that's not possible as WordPress hasn't processed the login this early yet.
+	GLOBAL $gom_utils;
 	$gom_utils = new ToolStack_WP_Utilities_V2_3( 'glot-o-matic' );
 
 	function gom_php_after_plugin_row() {
