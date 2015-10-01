@@ -40,9 +40,9 @@ License: GPL2
 	if( $gom_database != '' && $gom_database != DB_NAME ) { $gpdb = new wpdb( DB_USER, DB_PASSWORD, $gom_database, DB_HOST ); $gom_remote_db = true; }
 	
 	// Check to see if we're installed and are the current version.
-	$WPGP_Installed = get_option('gom_plugin_version');
-	//$WPGP_Installed = '';
-	if( $WPGP_Installed != GOM_VERSION ) {	
+	$GOM_Installed = get_option('gom_plugin_version');
+	//$GOM_Installed = '';
+	if( $GOM_Installed != GOM_VERSION ) {	
 		include_once( dirname( __FILE__ ) . '/gom-install.php' );
 	}
 
