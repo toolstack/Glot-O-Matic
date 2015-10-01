@@ -85,7 +85,9 @@ License: GPL2
 	add_action('admin_menu', 'gom_menu');
 
 	function gom_main_page() {
+		echo "<div style=\"padding-top: 20px; padding-right: 20px;\">\r\n";
 		echo gom_shortcode(null);
+		echo "</div>\r\n";
 	}
 
 	function gom_get_gp_table_prefix() {
