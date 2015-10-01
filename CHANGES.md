@@ -1,3 +1,12 @@
+# 1.5 #
+* Release date: October 1, 2015
+* Added support for new Glot-O-Matic Core plugins.
+* Added padding around the admin GlotPress page so the new TopBar doesn't merge with the WP topbar.
+* Fixed activation errors caused by some variable scope issues.
+* Updated to latest Glot-O-Matic Core.
+* Updated utility class to 2.4 release.
+* Updated settings/about menu to a tabbed interface.
+
 # 1.0 #
 * Release date: June 23, 2015
 * Added check to make sure the admin user actually exists before using it for per user Google translation options.
