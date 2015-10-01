@@ -30,6 +30,8 @@ License: GPL2
 		return; 
 	} 
 
+	GLOBAL $wpdb;
+	
 	$gpdb = $wpdb;
 	$gom_remote_db = false;
 	$gom_database = $gom_utils->get_option( 'gp_database_name' );

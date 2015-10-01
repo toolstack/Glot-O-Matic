@@ -8,7 +8,7 @@ Glot-O-Matic Core also includes several fixes to GlotPress:
 	- Additional filters/actions to support the new plugins.
 	- A transparent logo file so you can customize your install better.
 
-There are eight new plugins included in this version:
+There are nine new plugins included in this version:
 
 	- remove-projects-from-breadcrums
 	- use-slug-for-downloads
@@ -18,6 +18,7 @@ There are eight new plugins included in this version:
 	- bulk-download-translations
 	- force-ssl
 	- single-click-edit
+	- last-update
 	
 as well as an update to the google-translate plugin.  See the individual readme.txt files included with each plugin for more details on them.
 
@@ -63,14 +64,21 @@ This plugin will redirect any non-SSL requests to https.
 
 This plugin will work with the official GlotPress distribution.
 
+New Plugin: single-click-edit
+---------------------------------
+Single Click Edit is a plugin for GlotPress that will enable users to single click anywhere on the translation row to open the editor instead of having to click on "Details" or double click the row.
+	
+This plugin will work with the official GlotPress distribution.
+
+New Plugin: last-update
+---------------------------------
+Last Update is a plugin for GlotPress that will display the last update date/time in the translation set list.
+	
+This plugin will work with the official GlotPress distribution.
+
 Updated Plugin: google-translate
 --------------------------------
 The Google translate plugin has been updated, you can now assign a Google API key to individual users and a readme has been added with details on the configuraiton of the plugin.
 	
 This plugin will work with the official GlotPress distribution.
 
-Updated Plugin: single-click-edit
----------------------------------
-Single Click Edit is a plugin for GlotPress that will enable users to single click anywhere on the translation row to open the editor instead of having to click on "Details" or double click the row.
-	
-This plugin will work with the official GlotPress distribution.

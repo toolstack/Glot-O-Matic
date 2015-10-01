@@ -16,6 +16,7 @@ class GP_WordPress_Single_Sign_On extends GP_Plugin {
 
 		$this->add_action( 'gp_logout_link', array( 'args' => 1 ) );
 		$this->add_action( 'gp_login_link', array( 'args' => 1 ) );
+		$this->add_action( 'gp_url', array( 'args' => 3 ) );
 	}
 
 	public function gp_logout_link( $default ) {
@@ -24,6 +25,11 @@ class GP_WordPress_Single_Sign_On extends GP_Plugin {
 
 	public function gp_login_link( $default ) {
 		return '';
+	}
+	
+	public function gp_url( $default, $path, $query ) {
+		if( $path == '/login' ) { return gp_url_add_path_and_query( gp_const_get('GP_LOGIN_PATH', '/login'), '', $query ); }
+		return $default;
 	}
 
 }
