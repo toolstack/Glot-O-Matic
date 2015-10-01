@@ -10,8 +10,8 @@
 	GPL2, GNU General Public License version 2.
 	
 */
-if( !class_exists( 'ToolStack_WP_Utilities_V2_3' ) ) {
-	class ToolStack_WP_Utilities_V2_3
+if( !class_exists( 'ToolStack_WP_Utilities_V2_4' ) ) {
+	class ToolStack_WP_Utilities_V2_4
 		{
 		private $plugin_slug = '';
 		private $user_id = 0;
@@ -270,47 +270,83 @@ if( !class_exists( 'ToolStack_WP_Utilities_V2_3' ) ) {
 			
 			$post_output = '';
 
+			// Let's make sure we have an array passed in, otherwise, just return a blank result.
+			if( !is_array( $options ) ) { return ''; }
+			
+			// Loop through the options and process them.
 			foreach( $options as $name => $option ) 
 				{
+				// If the current option isn't an array or doesn't have a type set, do nothing and move on to the next one.
+				if( !is_array( $option) || !array_key_exists( 'type', $option ) ) { continue; }
+				
 				switch( $option['type'] ) 
 					{
 					case 'title':
-						$ret .= "					<tr><td colspan=\"2\"><h3>" . __($name) . "</h3></td></tr>\r\n";
+						$ret .= "					<tr><td colspan=\"2\"><h3>" . $name . "</h3></td></tr>\r\n";
 						
 						break;
 					case 'desc':
-						$ret .= "					<tr><td></td><td><span class=\"description\">" . __($option['desc']) . "</span></td></tr>\r\n";
+						// Check to make sure we have everything we need.
+						if( !array_key_exists( 'desc', $option ) ) { continue; }
+						
+						$ret .= "					<tr><td></td><td><span class=\"description\">" . $option['desc'] . "</span></td></tr>\r\n";
 						
 						break;
 					case 'bool':
+						// Check to make sure we have everything we need.
+						if( !array_key_exists( 'setting', $option ) ) { $option['setting'] = 0; }
+						if( !array_key_exists( 'desc', $option ) ) { continue; }
+						
 						if( $option['setting'] == 1 ) { $checked = " CHECKED"; } else { $checked = ""; } 
-						$ret .= "					<tr><td style=\"text-align: right;\">" . __($option['desc']) . ":</td><td><input name=\"$name\" value=\"1\" type=\"checkbox\" id=\"$name\"" . $checked. "></td></tr>\r\n";
+						$ret .= "					<tr><td style=\"text-align: right;\">" . $option['desc'] . ":</td><td><input name=\"$name\" value=\"1\" type=\"checkbox\" id=\"$name\"" . $checked. "></td></tr>\r\n";
 					
 						break;
 					case 'image':
-						$ret .= "					<tr><td style=\"text-align: right;\">" . __($option['desc']) . ":</td><td><input name=\"$name\" type=\"text\" size=\"40\" id=\"$name\" value=\"" . $option['setting'] . "\"></td></tr>\r\n";
+						// Check to make sure we have everything we need.
+						if( !array_key_exists( 'setting', $option ) ) { $option['setting'] = ''; }
+						if( !array_key_exists( 'desc', $option ) ) { continue; }
+
+						$ret .= "					<tr><td style=\"text-align: right;\">" . $option['desc'] . ":</td><td><input name=\"$name\" type=\"text\" size=\"40\" id=\"$name\" value=\"" . $option['setting'] . "\"></td></tr>\r\n";
 					
 						break;
 					case 'hidden':
+						// Check to make sure we have everything we need.
+						if( !array_key_exists( 'setting', $option ) ) { $option['setting'] = ''; }
+
 						$post_output .= '<input type="hidden" name="lh_id" id="lh_id" value="' . $option['setting'] . '">' . "\r\n";
 
 						break;
 					case 'select':
-						$ret .= "					<tr><td style=\"text-align: right;\">" . __($option['desc']) . ":</td><td><select name=\"$name\" id=\"$name\">" . $option['option_list']. "</select></td></tr>\r\n";
+						// Check to make sure we have everything we need.
+						if( !array_key_exists( 'option_list', $option ) ) { continue; }
+						if( !array_key_exists( 'desc', $option ) ) { continue; }
+
+						$ret .= "					<tr><td style=\"text-align: right;\">" . $option['desc'] . ":</td><td><select name=\"$name\" id=\"$name\">" . $option['option_list']. "</select></td></tr>\r\n";
 
 						break;
 					case 'static':
-						$ret .= "					<tr><td style=\"text-align: right;\">" . __($option['desc']) . ":</td><td>" . $option['setting']. "</td></tr>\r\n";
+						// Check to make sure we have everything we need.
+						if( !array_key_exists( 'setting', $option ) ) { $option['setting'] = ''; }
+						if( !array_key_exists( 'desc', $option ) ) { continue; }
+
+						$ret .= "					<tr><td style=\"text-align: right;\">" . $option['desc'] . ":</td><td>" . $option['setting']. "</td></tr>\r\n";
 
 						break;
 					default:
+						// Check to make sure we have everything we need.
+						if( !array_key_exists( 'height', $option ) ) { $option['height'] = 1; }
+						if( !array_key_exists( 'size', $option ) ) { $option['size'] = ''; }
+						if( !array_key_exists( 'setting', $option ) ) { $option['setting'] = ''; }
+						if( !array_key_exists( 'post', $option ) ) { $option['post'] = ''; }
+						if( !array_key_exists( 'desc', $option ) ) { continue; }
+
 						if( $option['height'] <= 1 ) 
 							{
-							$ret .= "					<tr><td style=\"text-align: right;\">" . __($option['desc']) . ":</td><td><input name=\"$name\" type=\"text\" size=\"{$option['size']}\" id=\"$name\" value=\"" . $option['setting'] . "\">" . $option['post'] . "</td></tr>\r\n";
+							$ret .= "					<tr><td style=\"text-align: right;\">" . $option['desc'] . ":</td><td><input name=\"$name\" type=\"text\" size=\"{$option['size']}\" id=\"$name\" value=\"" . $option['setting'] . "\">" . $option['post'] . "</td></tr>\r\n";
 							}
 						else 
 							{
-							$ret .= "					<tr><td style=\"text-align: right;\">" . __($option['desc']) . ":</td><td><textarea name=\"$name\" type=\"text\" cols=\"{$option['size']}\" rows=\"{$option['height']}\" id=\"$name\">" . esc_html( $option['setting'] ) . "</textarea>" . $option['post'] . "</td></tr>\r\n";
+							$ret .= "					<tr><td style=\"text-align: right;\">" . $option['desc'] . ":</td><td><textarea name=\"$name\" type=\"text\" cols=\"{$option['size']}\" rows=\"{$option['height']}\" id=\"$name\">" . esc_html( $option['setting'] ) . "</textarea>" . $option['post'] . "</td></tr>\r\n";
 							}
 					}
 				}
