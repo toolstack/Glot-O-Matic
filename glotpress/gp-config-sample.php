@@ -108,6 +108,7 @@ $gp_table_prefix = 'gp_';
 //define('GP_WORDPRESS_SINGLE_SIGN_ON', true);
 //define('AUTH_CLASS', 'WP_Auth_V2');
 //define('AUTH_CLASS_FILE', './plugins/wordpress-single-sign-on/class.wp-auth.v2.php');
+//define('GP_LOGIN_PATH', '/wp-login.php' );
 //define('GP_WORDPRESS_HASH', md5( 'YOUR-WP-PATH-HERE' ) );
 //define('GP_AUTH_COOKIE', 'wordpress_' . GP_WORDPRESS_HASH);
 //define('GP_SECURE_AUTH_COOKIE', 'wordpress_sec_auth_' . GP_WORDPRESS_HASH);
@@ -186,3 +187,15 @@ $gp_table_prefix = 'gp_';
  * For more options, see the readme in plugins/single-click-edit/readme.txt
  */
 //define( 'GP_SINGLE_CLICK_EDIT', true );
+
+/**
+ * Last Update Plugin
+ * 
+ * Last Update is a plugin for GlotPress that will display the last update time for translation
+ * sets.
+ * 
+ * For more options, see the readme in plugins/single-click-edit/readme.txt
+ */
+//define( 'GP_LAST_UPDATE', true );							// Enable the plugin.
+//define( 'GP_LAST_UPDATE_FORMAT', 'M j Y @ g:i a' );			// See PHP's date() function for format, default: 'M j Y @ g:i a'
+//define( 'GP_LAST_UPDATE_REQUIRED_PERMISSION', 'approve' );	// Permissions: read, approve, admin

@@ -14,11 +14,12 @@ class GP_Remove_Projects_From_Breadcrums extends GP_Plugin {
 	
 		parent::__construct();
 
-		$this->add_action( 'gp_pre_breadcrumb', array( 'args' => 1 ) );
+		$this->add_action( 'gp_breadcrumb_items', array( 'args' => 1 ) );
+		$this->add_action( 'gp_nav_menu_items', array( 'args' => 2 ) );
 		$this->add_action( 'gp_logo_url', array( 'args' => 1 ) );
 	}
 
-	public function gp_pre_breadcrumb( $breadcrums ) {
+	public function gp_breadcrumb_items( $breadcrums ) {
 		
 		if( is_array( $breadcrums ) ) { 
 			if( is_array( $breadcrums[0] ) ) {
@@ -31,6 +32,14 @@ class GP_Remove_Projects_From_Breadcrums extends GP_Plugin {
 		}
 
 		return $breadcrums;
+	}
+	
+	public function gp_nav_menu_items( $items, $locaiton ) {
+		$as = array_search( __('Projects'), $items );
+		
+		if( $as !== FALSE ) { unset( $items[$as] ); }
+		
+		return $items; 
 	}
 	
 	public function gp_logo_url( $url ) {
