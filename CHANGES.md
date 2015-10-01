@@ -1,3 +1,7 @@
+# 1.6 #
+* Release date: October 1, 2015
+* Fixed plugin update code to re-create the .htaccess/web.config after install and double check whenever the config is saved.
+
 # 1.5 #
 * Release date: October 1, 2015
 * Added support for new Glot-O-Matic Core plugins.

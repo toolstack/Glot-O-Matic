@@ -871,4 +871,24 @@ License: GPL2
 		unset( $config_settings );
 		unset( $constants );
 
+		// We need to create the .htaccess/web.config file so let's include some of the
+		// basic GlotPress code to allow us to use the install routine instead of re-creating it.
+		require_once( 'glotpress-install.php' );
+
+		// Write out the .htaccess/web.config file.
+		$cwd = getcwd();
+		chdir( dirname( __FILE__ ) . '/glotpress' );
+		
+		$url = plugin_dir_url( __FILE__ ) . 'glotpress/';
+		$path = parse_url( $url, PHP_URL_PATH);
+
+		// Create the .htaccess/web.config file if required (gp_set_* will only write the file if it doesn't exist).
+		if( $is_iis7 ) {
+			$show_webconfig_instructions = ! gp_set_webconfig( $path ) && empty( $errors );
+		}
+		else {
+			$show_htaccess_instructions = ! gp_set_htaccess( $path ) && empty( $errors );
+		}
+		
+		chdir( $cwd );
 	}
