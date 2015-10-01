@@ -718,62 +718,95 @@ License: GPL2
 		gom_write_gp_config_file();
 		}
 
+		wp_enqueue_script('jquery');
+		wp_enqueue_script('jquery-ui-core');
+		wp_enqueue_script('jquery-ui-tabs');
+		
+		wp_register_style("jquery-ui-css", plugin_dir_url(__FILE__) . "css/jquery-ui-1.10.4.custom.css");
+		wp_enqueue_style("jquery-ui-css");
+		wp_register_style("jquery-ui-tabs-css", plugin_dir_url(__FILE__) . "css/jquery-ui-tabs.css");
+		wp_enqueue_style("jquery-ui-tabs-css");
+		
 	?>
 <div class="wrap">
-	<fieldset style="border:1px solid #cecece;padding:15px; margin-top:25px" >
-		<legend><span style="font-size: 24px; font-weight: 700;">&nbsp;<?php _e('Glot-O-Matic Options');?>&nbsp;</span></legend>
-		<form method="post">
+	<script type="text/javascript">jQuery(document).ready(function() { jQuery("#tabs").tabs(); jQuery("#tabs").tabs("option", "active",0);} );</script>
+	<h2><?php _e('Glot-O-Matic Settings');?></h2>
+	
+	<div id="tabs">
+		<ul>
+			<li><a href="#fragment-0"><span><?php _e('Settings');?></span></a></li>
+			<li><a href="#fragment-1"><span><?php _e('About');?></span></a></li>
+		</ul>
 
-				<table>
+		<div id="fragment-0">
+		
+			<form method="post">
+
 <?php
-				
-				foreach( $gom_options as $name => $option ) {
-
-					switch( $option['type'] ) {
-						case 'title':
-							echo "					<tr><td colspan=\"2\"><h3>" . __($name) . "</h3></td></tr>\n";
-							
-							break;
-						case 'desc':
-							echo "					<tr><td></td><td><span class=\"description\">" . __($option['desc']) . "</span></td></tr>\n";
-							
-							break;
-						case 'bool':
-							if( $gom_utils->get_option($name) == true ) { $checked = " CHECKED"; } else { $checked = ""; } 
-							echo "					<tr><td style=\"text-align: right;\">" . __($option['desc']) . ":</td><td><input name=\"$name\" value=\"1\" type=\"checkbox\" id=\"$name\"" . $checked. "></td></tr>\n";
-						
-							break;
-						case 'image':
-							echo "					<tr><td style=\"text-align: right;\">" . __($option['desc']) . ":</td><td><input name=\"$name\" type=\"text\" size=\"40\" id=\"$name\" value=\"" . $gom_utils->get_option($name) . "\"></td></tr>\n";
-						
-							break;
-						default:
-							if( $option['height'] <= 1 ) {
-								echo "					<tr><td style=\"text-align: right;\">" . __($option['desc']) . ":</td><td><input name=\"$name\" type=\"text\" size=\"{$option['size']}\" id=\"$name\" value=\"" . $gom_utils->get_option($name) . "\"></td></tr>\n";
-							}
-							else {
-								echo "					<tr><td style=\"text-align: right;\">" . __($option['desc']) . ":</td><td><textarea name=\"$name\" type=\"text\" cols=\"{$option['size']}\" rows=\"{$option['height']}\" id=\"$name\">" . esc_html( $gom_utils->get_option($name) ) . "</textarea></td></tr>\n";
-							}
-								
-					}
+				foreach( $gom_options as $key => $value ) {
+					$gom_options[$key]['setting'] = $gom_utils->get_option($key);
 				}
 
-
+				echo $gom_utils->generate_options_table( $gom_options );
 ?>
-				</table>
+				
 			<div class="submit"><input type="submit" class="button button-primary" name="gom-options-save" value="<?php _e('Update Options') ?>" /></div>
 		</form>
 		
-	</fieldset>
+	</div>
 	
-	<fieldset style="border:1px solid #cecece;padding:15px; margin-top:25px" >
-		<legend><span style="font-size: 24px; font-weight: 700;">&nbsp;<?php _e('About'); ?>&nbsp;</span></legend>
-		<h2><?php echo sprintf( __('Glot-O-Matic Version %s'), GOM_VERSION );?></h2>
-		<p><?php _e('by');?> <a href="https://profiles.wordpress.org/gregross" target=_blank>Greg Ross</a></p>
-		<p>&nbsp;</p>
-		<p><?php printf(__('Licenced under the %sGPL Version 2%s'), '<a href="http://www.gnu.org/licenses/gpl-2.0.html" target=_blank>', '</a>');?></p>
-		<p><?php printf(__('To find out more, please visit the %sGitHub repository page%s or %sglot-o-matic.com%s'), '<a href="https://github.com/toolstack/Glot-O-Matic" target=_blank>', '</a>', '<a href="http://glot-o-matic.com" target=_blank>', '</a>');?></p>
-	</fieldset>
+	<div id="fragment-1">
+		<table class="form-table">
+			<tbody>
+				<tr valign="top">
+					<td scope="row" align="center"><img src="<?php echo plugins_url('glot-o-matic/assets/icon-250x250.png'); ?>"></td>
+				</tr>
+
+				<tr valign="top">
+					<td scope="row" align="center"><h2><?php echo sprintf(__('Glot-O-Matic V%s'), GOM_VERSION); ?></h2></td>
+				</tr>
+
+				<tr valign="top">
+					<td scope="row" align="center"><p>by <a href="https://glot-o-matic.com">Greg Ross</a></p></td>
+				</tr>
+
+				<tr valign="top">
+					<td scope="row" align="center"><hr /></td>
+				</tr>
+
+				<tr valign="top">
+					<td scope="row" colspan="2"><?php _e('Thanks for installing Glot-O-Matic!');?> </td>
+				</tr>
+				
+				<tr valign="top">
+					<td scope="row" colspan="2"><h2><?php _e('Support'); ?></h2></td>
+				</tr>
+
+				<tr valign="top">
+					<td scope="row" colspan="2">
+						<p><?php _e("Here are a few things to do submitting a support request:"); ?></p>
+
+						<ul style="list-style-type: disc; list-style-position: inside; padding-left: 25px;">
+							<li><?php echo sprintf( __('Have you search the %s for a similar issue?' ), '<a href="https://github.com/toolstack/Glot-O-Matic/issues" target="_blank">' . __('issue tracker') . '</a>');?></li>
+							<li><?php _e('Have you search the Internet for any error messages you are receiving?' );?></li>
+							<li><?php _e('Make sure you have access to your PHP error logs.' );?></li>
+						</ul>
+
+						<p><?php _e('And a few things to double-check:' );?></p>
+
+						<ul style="list-style-type: disc; list-style-position: inside; padding-left: 25px;">
+							<li><?php _e('Have you double checked the plugin settings?' );?></li>
+							<li><?php _e('Are you getting a blank or incomplete page displayed in your browser?  Did you view the source for the page and check for any fatal errors?' );?></li>
+							<li><?php _e('Have you checked your PHP and web server error logs?' );?></li>
+						</ul>
+
+						<p><?php _e('Still not having any luck?' );?> <?php echo sprintf(__('Then please open a new thread on the %s.' ), '<a href="https://github.com/toolstack/Glot-O-Matic/issues" target="_blank">' . __('GitHub.com issue tracker') . '</a>');?></p>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
 </div>
 	<?php
 		}
