@@ -9,7 +9,7 @@ Author URI: http://toolstack.com
 Tags: glotpress admin  
 Requires at least: 3.9  
 Tested up to: 4.3
-Stable tag: 1.0
+Stable tag: 1.5
 License: GPLv2  
 
 A full copy of GlotPress that's integrated with your WordPress install, including single sign on.
@@ -121,7 +121,22 @@ SSL
 	Support HTTP_X_FORWARDED_PROTO
 	
 		Some hosting providers place the SSL certificate on a proxy server in front of the web server, this will use the HTTP_X_FORWARDED_PROTO header to detect when an SSL connection is being made from the client.
+
+Single Click Edit
+	Enable Single Click Edit
 	
+		This will enable users to single click anywhere on the translation row to open the editor instead of having to click on "Details" or double click the row.
+	
+Last Update Info
+	Enable Last Update
+	
+		This will include the last time a translation has been updated in the "extras" field in the translations list of a project.
+		
+Color Logo
+	Enable Color Logo
+	
+		This will use a color GlotPress logo in the top left of the screen.
+		
 Advanced
 	Use this url when opening GlotPress
 	
@@ -141,7 +156,7 @@ Yes! Glot-O-Matic is a full one-click install of GlotPress in your WordPress sys
 
 No, but you might be interested in [GP Integration](http://wordpress.org/plugins/gp-integration) which has many of the same features.
 
-You also might want to check out the plugins and other features available in the fork of GlotPress I maintain at [GitHub](http://github.com/toolstack/GlotPress).
+You also might want to check out the plugins and other features available in the fork of GlotPress I maintain at [GitHub](http://github.com/toolstack/Glot-O-Matic).
 
 # What is the shortcode name? #
 
@@ -163,5 +178,4 @@ Also note that external links the "Proudly powered by GlotPress" in the footer, 
 3. Configuration screen.
 4. Translation set managmenet	.
 5. Project management.
-6. User management.
-7. Admin management.
+6. Admin management.

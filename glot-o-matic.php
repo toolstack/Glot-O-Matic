@@ -4,14 +4,14 @@ Plugin Name: Glot-O-Matic
 Plugin URI: http://glot-o-matic.com
 GitHub Plugin URI: https://github.com/toolstack/Glot-O-Matic
 Description: A full copy of GlotPress that's integrated with your WordPress install, including single sign on.
-Version: 1.0
+Version: 1.5
 Author: Greg Ross
 Author URI: http://toolstack.com
 License: GPL2
 */
 
 	// These defines are used later for various reasons.
-	define('GOM_VERSION', '1.0');
+	define('GOM_VERSION', '1.5');
 	define('GOM_REQUIRED_PHP_VERSION', '5.3' );
 
 	include_once( 'ToolStack-WP-Utilities.class.php' );
