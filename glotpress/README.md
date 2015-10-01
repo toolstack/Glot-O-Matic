@@ -8,7 +8,7 @@ Glot-O-Matic Core also includes several fixes to GlotPress:
 	- Additional filters/actions to support the new plugins.
 	- A transparent logo file so you can customize your install better.
 
-There are nine new plugins included in this version:
+There are ten new plugins included in this version:
 
 	- remove-projects-from-breadcrums
 	- use-slug-for-downloads
@@ -19,6 +19,7 @@ There are nine new plugins included in this version:
 	- force-ssl
 	- single-click-edit
 	- last-update
+	- color-logo
 	
 as well as an update to the google-translate plugin.  See the individual readme.txt files included with each plugin for more details on them.
 
@@ -73,6 +74,12 @@ This plugin will work with the official GlotPress distribution.
 New Plugin: last-update
 ---------------------------------
 Last Update is a plugin for GlotPress that will display the last update date/time in the translation set list.
+	
+This plugin will work with the official GlotPress distribution.
+
+New Plugin: color-update
+---------------------------------
+Last Update is a plugin for GlotPress that will add some color to the GlotPress logo in the top left of the screen.
 	
 This plugin will work with the official GlotPress distribution.
 

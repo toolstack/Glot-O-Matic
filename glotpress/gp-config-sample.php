@@ -199,3 +199,13 @@ $gp_table_prefix = 'gp_';
 //define( 'GP_LAST_UPDATE', true );							// Enable the plugin.
 //define( 'GP_LAST_UPDATE_FORMAT', 'M j Y @ g:i a' );			// See PHP's date() function for format, default: 'M j Y @ g:i a'
 //define( 'GP_LAST_UPDATE_REQUIRED_PERMISSION', 'approve' );	// Permissions: read, approve, admin
+
+/**
+ * Color Logo Plugin
+ * 
+ * Color Logo is a plugin for GlotPress that will make the GlotPress logo in to top left of the
+ * screen have some color.
+ * 
+ * For more options, see the readme in plugins/color-logo/readme.txt
+ */
+//define( 'GP_COLOR_LOGO', true );
