@@ -19,7 +19,7 @@ License: GPL2
 	
 	// Create out global utilities object.  We might be tempted to load the user options now, but that's not possible as WordPress hasn't processed the login this early yet.
 	GLOBAL $gom_utils;
-	$gom_utils = new ToolStack_WP_Utilities_V2_4( 'glot-o-matic' );
+	$gom_utils = new ToolStack_WP_Utilities_V2_5( 'glot-o-matic', __FILE__ );
 
 	function gom_php_after_plugin_row() {
 		echo '<tr><th scope="row" class="check-column"></th><td class="plugin-title" colspan="10"><span style="padding: 3px; color: white; background-color: red; font-weight: bold">&nbsp;&nbsp;' . __('ERROR: Glot-O-Matic has detected an unsupported version of PHP, Glot-O-Matic will not function without PHP Version ') . GOM_REQUIRED_PHP_VERSION . __(' or higher!') . '  ' . __('Your current PHP version is') . ' ' . phpversion() . '.&nbsp;&nbsp;</span></td></tr>';
@@ -759,7 +759,7 @@ License: GPL2
 		<table class="form-table">
 			<tbody>
 				<tr valign="top">
-					<td scope="row" align="center"><img src="<?php echo plugins_url('glot-o-matic/assets/icon-250x250.png'); ?>"></td>
+					<td scope="row" align="center"><img src="<?php echo $gom_utils->plugin_url . '/assets/icon-250x250.png'; ?>"></td>
 				</tr>
 
 				<tr valign="top">

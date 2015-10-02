@@ -10,8 +10,8 @@
 	GPL2, GNU General Public License version 2.
 	
 */
-if( !class_exists( 'ToolStack_WP_Utilities_V2_4' ) ) {
-	class ToolStack_WP_Utilities_V2_4
+if( !class_exists( 'ToolStack_WP_Utilities_V2_5' ) ) {
+	class ToolStack_WP_Utilities_V2_5
 		{
 		private $plugin_slug = '';
 		private $user_id = 0;
@@ -21,23 +21,42 @@ if( !class_exists( 'ToolStack_WP_Utilities_V2_4' ) ) {
 		
 		public $options = array();
 		public $user_options = array();
+		public $plugin_dir;
+		public $plugin_url;
 
 		// Construction function.
-		public function __construct( $slug = null ) 
+		public function __construct( $slug = null, $file = null ) 
 			{
+			if( $file == null ) { $file = __FILE__; }
+				
+			// Get the plugin's base name, it will be something like 'plugin-slug/ToolStack-WP-Utilities.class.php'
+			$plugin_basename = plugin_basename( $file );
+			
+			// Get the path of the plugins root directory, we do this my striping off the result we obtained above from the current file name.
+			$plugin_dir_path = substr( $file, 0, - strlen( $plugin_basename ) );
+			
+			// Split the basename so we can get the directory of the plug.  We use this instead of the slug as it may be case sensitive but the slug is always lower case.
+			// Afterwords, trim the dir name just in case.
+			$split = preg_split( '_[\\\\/]_', $plugin_basename );
+			$dirname = trim( $split[0] );
+			
+			// Now set our variables for use later.
+			$this->plugin_dir = $plugin_dir_path . $dirname;
+			$this->plugin_url = plugins_url() . '/' . $dirname;
+			
+			// Let's set the slug to use.
 			if( $slug == null ) 
 				{
-				$plugin_basename = plugin_basename( __FILE__ );
-				
-				$exp = preg_split( '_[\\\\/]_', $plugin_basename );
-
-				$this->plugin_slug = strtolower( trim( $exp[0] ) );
+				// If no slug was passed in, use the current directory name under the plugins directory, strtolower() to make sure we follow the normal convention.
+				$this->plugin_slug = strtolower( $dirname );
 				}
 			else 
 				{
+				// If we had a slug passed in, use it as is.
 				$this->plugin_slug = $slug;
 				}
 
+			// If we don't have a slug after the above, let's set a default so it's not empty.
 			if( $this->plugin_slug == '' )
 				{
 				$this->plugin_slug = 'toolstackplaceholder';
