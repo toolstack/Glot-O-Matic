@@ -1,3 +1,8 @@
+# 1.6.1 #
+* Release date: October 2, 2015
+* Fixed broken logo link in the about page on some sites.
+* Updated utiity class to 2.5 release.
+
 # 1.6 #
 * Release date: October 1, 2015
 * Fixed plugin update code to re-create the .htaccess/web.config after install and double check whenever the config is saved.
