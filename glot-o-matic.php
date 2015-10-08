@@ -31,7 +31,7 @@ License: GPL2
 		return; 
 	} 
 
-	GLOBAL $wpdb;
+	GLOBAL $wpdb, $gpdb;
 	
 	$gpdb = $wpdb;
 	$gom_remote_db = false;
